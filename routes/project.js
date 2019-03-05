@@ -27,6 +27,15 @@ router.get('/', (req,res,next) => {
 
     }).catch(err => next(err))
 
+});
+
+router.get('/:alias', (req,res,next) => {
+    let alias = req.params.alias;
+
+    Project.findOne({alias:alias}).then(data => {
+        res.status(200).json({data:data, message:'Single Project'})
+    }).catch(err => next(err))
+
 })
 
-module.exports = router;
+module.exports = router; 

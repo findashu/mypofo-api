@@ -18,7 +18,7 @@ mongoose.connect(config.dbUrl, {useNewUrlParser:true}, function(err, data)  {
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false})); 
-
+app.use(appMiddleware.logger)
 
 app.use('/', index);
 app.use('/projects', project)
@@ -26,4 +26,4 @@ app.use('/projects', project)
 app.use(appMiddleware.notFound);
 app.use(appMiddleware.error)
 
-app.listen(config.port,() => console.log('API Up and Running on port 3000'))
+app.listen(config.port,() => console.log(`API Up and Running on port ${config.port}`))
